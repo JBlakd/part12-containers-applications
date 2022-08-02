@@ -1,0 +1,14 @@
+WSL at  jblakd: ~ ❯ docker run -it ubuntu bash
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+d19f32bd9e41: Pull complete
+Digest: sha256:34fea4f31bf187bc915536831fd0afc9d214755bf700b5cdb1336c82516d154e
+Status: Downloaded newer image for ubuntu:latest
+root@495ce2786bde:/# mkdir /usr/src/app
+root@495ce2786bde:/# cd /usr/src/app
+root@495ce2786bde:/usr/src/app# touch index.js
+root@495ce2786bde:/usr/src/app# ls
+index.js
+root@495ce2786bde:/usr/src/app# exit
+exit
+WSL at  jblakd: ~ ❯
