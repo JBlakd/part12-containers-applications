@@ -1,0 +1,54 @@
+root@ca0ec14d9369:/# mongo -u root -p example
+MongoDB shell version v5.0.10
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("65898de7-fbef-41c5-85ae-8dad6d73a5ad") }
+MongoDB server version: 5.0.10
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+---
+The server generated these startup warnings when booting:
+        2022-08-03T07:22:34.098+00:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+        2022-08-03T07:22:34.411+00:00: /sys/kernel/mm/transparent_hugepage/enabled is 'always'. We suggest setting it to 'never'
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> show dbs
+admin         0.000GB
+config        0.000GB
+local         0.000GB
+the_database  0.000GB
+> use the_database
+switched to db the_database
+> show collections
+todos
+> db.todos.find({})
+{ "_id" : ObjectId("62ea1bede7bca9629d662b7f"), "text" : "implement PUT request", "done" : true }
+{ "_id" : ObjectId("62ea1bede7bca9629d662b80"), "text" : "Learn about containers", "done" : false }
+> db.todos.create({"text": "Increase the number of tools in my toolbelt", "done": false})
+uncaught exception: TypeError: db.todos.create is not a function :
+@(shell):1:1
+> db.todos.insert({"text": "Increase the number of tools in my toolbelt", "done": false})
+WriteResult({ "nInserted" : 1 })
+> db.todos.find({})
+{ "_id" : ObjectId("62ea1bede7bca9629d662b7f"), "text" : "implement PUT request", "done" : true }
+{ "_id" : ObjectId("62ea1bede7bca9629d662b80"), "text" : "Learn about containers", "done" : false }
+{ "_id" : ObjectId("62ea28b7caf961c1aaad292d"), "text" : "Increase the number of tools in my toolbelt", "done" : false }
+> exit
+bye
+root@ca0ec14d9369:/# exit
+exit
+WSL at  jblakd: ~ ❯
