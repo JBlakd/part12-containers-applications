@@ -32,8 +32,10 @@ router.get('/statistics', async (req, res) => {
 const singleRouter = express.Router();
 
 const findByIdMiddleware = async (req, res, next) => {
+  console.log('findByIdMiddleware: ', req.body)
   const { id } = req.params
   console.log('findByIdMiddleware id:', id)
+  req.id = id
   req.todo = await Todo.findById(id)
   if (!req.todo) {
     return res.sendStatus(404)
@@ -56,15 +58,11 @@ singleRouter.get('/', async (req, res, next) => {
 
 /* PUT todo. */
 singleRouter.put('/', async (req, res) => {
-  if (req.body.hasOwnProperty('text')) {
-    req.todo.text = req.body.text
-  }
-
-  if (req.body.hasOwnProperty('done')) {
-    req.todo.done = (req.body.done.toLowerCase() === 'true') ? true : false
-  }
-
-  const updatedTodo = await req.todo.save(req.todo)
+  req.todo = req.body
+  console.log('req.todo: ', req.todo)
+  console.log('req.id: ', req.id)
+  const updatedTodo = await Todo.findByIdAndUpdate(req.id, req.todo, { new: true })
+  console.log('updatedTodo: ', updatedTodo)
   res.json(updatedTodo)
 });
 

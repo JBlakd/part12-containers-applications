@@ -27,6 +27,7 @@ const TodoView = () => {
   }
 
   const completeTodo = async (todo) => {
+    console.log('bout to complete this shit: ', todo.text)
     await axios.put(`/todos/${todo._id}`, {
       text: todo.text,
       done: true
